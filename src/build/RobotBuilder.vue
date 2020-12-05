@@ -2,7 +2,8 @@
   <div class="content">
     <button class="add-to-cart" @click="addToCart()">Add to Cart</button>
     <div class="top-row">
-      <div class="top part">
+      <!-- aplica a class se for true -->
+      <div :class="[saleBorderClass, 'top', 'part']">
         <!-- div fica bloqueada e nunca é alterada, mesmo que haja funções sobre ela
         <div v-once class="robot-name">-->
         <div class="robot-name">
@@ -89,6 +90,9 @@ export default {
     };
   },
   computed: {
+    saleBorderClass() {
+      return this.selectedRobot.head.onSale ? 'sale-border' : '';
+    },
     selectedRobot() {
       return {
         head: availableParts.heads[this.selectedHeadIndex],
@@ -173,7 +177,8 @@ export default {
 };
 </script>
 
-<style>
+<!-- scoped para os estilos serem apenas aplicádos neste componente -->
+<style scoped>
 .part {
   position: relative;
   width:165px;
@@ -288,5 +293,8 @@ td, th {
 }
 .cost {
   text-align: right;
+}
+.sale-border {
+  border: 3px solid rgb(151, 241, 7);
 }
 </style>
