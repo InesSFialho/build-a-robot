@@ -19,7 +19,19 @@ function getNextValidIndex(index, length) {
 }
 
 export default {
-  props: ['parts', 'position'],
+  props: {
+    parts: {
+      type: Array,
+      require: true,
+    },
+    postions: {
+      type: String,
+      require: true,
+      validator(value) {
+        return ['left', 'right', 'top', 'bottom', 'center'].includes(value);
+      },
+    },
+  },
   data() {
     return { selectedPartIndex: 0 };
   },
