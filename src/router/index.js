@@ -61,7 +61,7 @@ export default new Router({
     name: 'Parts',
     component: PartInfo,
     props: true,
-    // navigation guard
+    // navigation guard: se receber uma string o url não mexe, nem mostra a próxima view
     beforeEnter(to, from, next) {
       const isValidId = Number.isInteger(Number(to.params.id));
       next(isValidId);
